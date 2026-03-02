@@ -15,7 +15,7 @@ class UserController extends Controller
         $user = User::all();
 
         // return $user;
-        return view("welcome",compact('user'));
+        return view("welcome",compact('user')); 
     }
 
     /**
@@ -66,3 +66,4 @@ class UserController extends Controller
         //
     }
 }
+

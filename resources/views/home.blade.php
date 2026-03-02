@@ -1,0 +1,32 @@
+@extends('layout')
+
+@section(tittle')
+    All User Data
+@endsection
+
+@section('content')
+    <a href="" class="btn bth-success btn-sm mb-3">Add New</a>
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Age</th>
+                        <th>City</th>
+                        <th>View</th>
+                        <th>Update</th>
+                    </tr>
+                    @foreach ($users as $user)
+                        <tr>
+                            <td>{{ $user->id }}</td>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->age }}</td>
+                            <td>{{ $user->city }}</td>
+                            <td><a href="" class="btn btn-primary btn-sm"></a>View</td>
+                            <td><a href="" class="btn btn-danger btn-sm"></a>Delete</td>
+                            <td><a href="" class="btn btn-warning btn-sm"></a>Update</td>      
+                        </tr>
+                    @endforeach
+                </table>
+@endsection
