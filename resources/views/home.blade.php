@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <a href="" class="btn bth-success btn-sm mb-3">Add New</a>
+    <a href="{{ route('user.create') }}" class="btn bth-success btn-sm mb-3">Add New</a>
                 <table class="table table-striped table-bordered">
                     <tr>
                         <th>Id</th>
@@ -23,9 +23,9 @@
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->age }}</td>
                             <td>{{ $user->city }}</td>
-                            <td><a href="" class="btn btn-primary btn-sm"></a>View</td>
+                            <td><a href="{{ route('user.show',$user->id ) }}" class="btn btn-primary btn-sm"></a>View</td>
                             <td><a href="" class="btn btn-danger btn-sm"></a>Delete</td>
-                            <td><a href="" class="btn btn-warning btn-sm"></a>Update</td>      
+                            <td><a href="{{ route('user.edit',$user->id ) }}" class="btn btn-warning btn-sm"></a>Update</td>      
                         </tr>
                     @endforeach
                 </table>

@@ -12,10 +12,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::all();
+        $users = User::all();
 
         // return $user;
-        return view("welcome",compact('user')); 
+        return view("home",compact('user')); 
     }
 
     /**
@@ -23,7 +23,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view("adduser");
     }
 
     /**
@@ -39,7 +39,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        $users = User::find($user);
+
+         return view("viewuser", compact('users'));
     }
 
     /**
@@ -47,7 +49,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+         return view("updateuser");
     }
 
     /**
