@@ -31,15 +31,42 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return $request;
+
+
+        // $user = new User;
+
+        // $user->name = $request->username;
+        // $user->email = $request->useremail;
+        // $user->age = $request->userage;
+        // $user->city = $request->usercity;
+
+        // $user->save();
+
+         $request->validate([
+            'username' => 'required|string',
+            'useremail' => 'required|email',
+            'userage' => 'required|numeric',
+            'usercity' => 'required|alpha',
+        ]); 
+
+        user::create([
+        'name' => $request->username,
+        'email' => $request->useremail,
+        'age' =>  $request->userage,
+        'city' =>  $request->usercity,
+        ]);
+
+        return redirect()->route('user.index')
+                                            ->with('status','New User Added Successfully.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show(string $id)
     {
-        $users = User::find($user);
+        $users = User::find($id);
 
          return view("viewuser", compact('users'));
     }
@@ -49,23 +76,60 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-         return view("updateuser");
+        $Users = User::find($user->id);
+         return view("updateuser", compact('users'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, string $id)
     {
-        //
+        // $user = User::find($id);
+
+        // $user->name = $request->username;
+        // $user->email = $request->useremail;
+        // $user->age = $request->userage;
+        // $user->city = $request->usercity;
+
+        // $user->save();
+
+        $request->validate([
+            'username' => 'required|string',
+            'useremail' => 'required|email',
+            'userage' => 'required|numeric',
+            'usercity' => 'required|alpha',
+        ]);
+
+        $user = User::where('id',$id)
+                        ->where([
+                            'name' => $request->username,
+                            'email' => $request->useremail,
+                            'age' =>  $request->userage,
+                            'city' =>  $request->usercity,
+                        ]);
+
+        return redirect()->route('user.index')
+                                            ->with('status','User Data Updated Successfully.');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy(string $id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+
+        // User::destroy($id);
+
+        // User::destroy(8,9);
+
+        // User::truncate();
+
+        return redirect()->route('user.index')
+                                            ->with('status','User Data Deleted Successfully.');
     }
 }
 

@@ -23,6 +23,16 @@
                 <h4>@yield('tittle')</h4>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-8">
+                @if (@session('status'))
+                <div class="alert alert-success">
+                    {{session('status')}}
+                    </div>
+                @endif
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-8">
