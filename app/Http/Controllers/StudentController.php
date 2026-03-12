@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Student;
+use App\Models\student;
+use App\Models\contact;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -12,7 +13,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::all();
+        $students = student::with('contact')->get();
         return $students;
     }
 
