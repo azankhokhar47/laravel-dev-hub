@@ -2,20 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\student;
-use App\Models\contact;
 use Illuminate\Http\Request;
 
-class StudentController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * 
      */
     public function index()
     {
-        $students = student::with('contact')->get();
-        return $students;
+        //
     }
 
     /**
