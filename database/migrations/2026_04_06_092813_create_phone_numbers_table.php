@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-            $table->decimal('amount',9,2);
-            $table->foreignId('customer_id')
+        Schema::create('phone_numbers', function (Blueprint $table) {
+             $table->id();
+            $table->string('number')->unique();
+            $table->foreignId('company_id')
                             ->references('id')
-                            ->on('customers')
+                            ->on('companys')
                             ->cascadeOnDelete();
             $table->timestamps();
         });
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('phone_numbers');
     }
 };

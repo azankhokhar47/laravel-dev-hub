@@ -5,11 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Customer extends Model
+class Phone_number extends Model
 {
     use HasFactory;
-
-    public function latestOrder(){
-        return $this->hasOne(Order::class)->latestOfMany();
-    }
 }

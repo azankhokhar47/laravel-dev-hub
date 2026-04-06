@@ -9,9 +9,7 @@ class User extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
-
-    // protected $guarded = [];
-
-    protected $fillable = ['name', 'email', 'age', 'city'];
+    public function phoneNumber(){
+     return $this->hasOneThrough(Phone_number::class,Company::class);
+    }
 }
