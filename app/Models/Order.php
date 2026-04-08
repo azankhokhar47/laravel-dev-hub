@@ -5,11 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Order extends Model
 {
     use HasFactory;
 
-    public function phoneNumber(){
-     return $this->hasOneThrough(Phone_number::class,Company::class);
-    }
+    protected $guarded = [];
 }
