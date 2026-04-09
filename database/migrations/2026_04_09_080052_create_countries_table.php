@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('countries', function (Blueprint $table) {
             $table->id();
-            $table->decimal('amount',9,2);
-            $table->foreignId('customer_id')
-                            ->references('id')
-                            ->on('customers')
-                            ->cascadeOnDelete();
-            $table->timestamps();
+            $table->string('name');
         });
     }
 
@@ -27,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('countries');
     }
 };

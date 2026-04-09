@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
 use Illuminate\Http\Request;
 
-class CustomerController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $Customers = Customer::with("latestOrder")->get();
-        return $Customers;
+        //
     }
 
     /**

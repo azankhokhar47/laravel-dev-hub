@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Customer extends Model
+class Country extends Model
 {
     use HasFactory;
 
-    public function latestOrder(){
-     return $this->hasOne(Order::class)->latestOfMany();
-    }
+    public function posts(){
+     return $this->hasManyThrough(Post::class, User::class);
+}
 }

@@ -2,20 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class CountryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $order = Order::create([
-            "amount" =>2300,
-            "cutomer_id" => 2
-        ]);
+        //
     }
 
     /**
