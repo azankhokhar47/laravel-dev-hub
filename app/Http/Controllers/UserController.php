@@ -12,10 +12,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::with("posts")
-                    ->with("country")
-                    ->get();
-        return $user;
+        //
     }
 
     /**
@@ -23,7 +20,13 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $user = User::find(1);
+        
+        $user->image()->create([
+            'url'=> 'image/users/user3.jpg'
+        ]);
+
+
     }
 
     /**

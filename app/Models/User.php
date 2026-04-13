@@ -9,11 +9,10 @@ class User extends Model
 {
     use HasFactory;
 
-    public function posts(){
-     return $this->hasMany(Post::class,); 
-    }
+    protected $guarded = [];
+    public $timestamps = false;
 
-    public function country(){
-     return $this->belongsTo(country::class,); 
+    public function image(){
+        return $this->morphOne(Image::class, 'imageable');
     }
 }
