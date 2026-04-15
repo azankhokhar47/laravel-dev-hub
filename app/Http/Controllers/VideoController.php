@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Video;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class VideoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,13 +20,13 @@ class UserController extends Controller
      */
     public function create()
     {
-        $user = User::find(1);
-        
-        $user->image()->create([
-            'url'=> 'image/users/user3.jpg'
+        $video =Video::find(1);
+
+        $video->commants()->create([
+            'detail'=>'Best Vedio'
         ]);
 
-
+        // return $video; 
     }
 
     /**

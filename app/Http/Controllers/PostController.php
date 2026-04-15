@@ -12,8 +12,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $post = Post::with("image")->find(6);
-         return $post;
+        //
     }
 
     /**
@@ -22,12 +21,8 @@ class PostController extends Controller
     public function create()
     {
         $post = Post::create([
-          'tittle' =>"New tittle one",
-          'discription'=>"Time management is the ability to plan and control how you spend your time. It helps you complete tasks efficiently, reduce stress, and achieve your goals faster."
-        ]);
-
-        $post->image()->create([
-            'url'=> 'image/post/post-one.jpg'
+        'tittle'=>"New tittle One",
+        'description'=>"this is best post forever"
         ]);
     }
 
