@@ -24,6 +24,10 @@ class PostController extends Controller
         'tittle'=>"New tittle One",
         'description'=>"this is best post forever"
         ]);
+
+        $post->comments()->create([
+            'details'=>"this is post comment"
+        ]);
     }
 
     /**

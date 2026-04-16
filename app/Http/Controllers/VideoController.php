@@ -12,7 +12,9 @@ class VideoController extends Controller
      */
     public function index()
     {
-        //
+    $video = Video::with("latestComment")->find(1);
+    return $video;
+
     }
 
     /**
@@ -20,11 +22,14 @@ class VideoController extends Controller
      */
     public function create()
     {
-        $video =Video::find(1);
+      
 
-        $video->commants()->create([
-            'detail'=>'Best Vedio'
-        ]);
+
+        // $video =Video::find(1);
+
+        // $video->commants()->create([
+        //     'detail'=>'Best Vedio'
+        // ]);
 
         // return $video; 
     }
