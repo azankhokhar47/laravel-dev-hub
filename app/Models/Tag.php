@@ -5,16 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model
+class Tag extends Model
 {
     use HasFactory;
-
+  
     protected $guarded = [];
 
     public $timestamps = false;
 
+     public function posts(){
+        return $this->morphedByMany(Post::class, 'taggable');
+    }
 
-     public function commantable(){
-        return $this->morphTo();
+    public function videos(){
+        return $this->morphedByMany(Video::class, 'taggable');
     }
 }

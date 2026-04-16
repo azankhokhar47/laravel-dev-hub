@@ -24,7 +24,11 @@ class VideoController extends Controller
     {
       
 
+    $post= Video::find(2);
 
+    $post->tags()->sync([2,4]);
+
+    }
         // $video =Video::find(1);
 
         // $video->commants()->create([
@@ -32,7 +36,7 @@ class VideoController extends Controller
         // ]);
 
         // return $video; 
-    }
+    
 
     /**
      * Store a newly created resource in storage.

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class PostController extends Controller
 {
@@ -11,23 +13,32 @@ class PostController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        //
-    }
+        {
+        //  dd(DB::table('taggables')->pluck('taggable_type'));
+
+            $post = Post::with('tags')->get();
+
+            return $post;
+        }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        $post = Post::create([
-        'tittle'=>"New tittle One",
-        'description'=>"this is best post forever"
-        ]);
+        // $post = Post::create([
+        //     "tittle"=>"New tittle six",
+        //     "discription"=>"this is best post forever"
+        // ]);
 
-        $post->comments()->create([
-            'details'=>"this is post comment"
-        ]);
+        // $post= Post::find(3);
+
+        // $post->tags()->attach([2,6]);
+
+
+        // $post->tags()->create([
+        //     "tag_name"=>"Subh singh",
+        // ]);
     }
 
     /**
