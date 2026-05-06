@@ -6,23 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::create('tests', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->json("mata_data")->nullable();
+            $table->string('title', 50);
+            $table->string('slug', 100);
+            $table->longText('description');
+            $table->integer('counter')->default(0);
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('tests');
+        Schema::dropIfExists('posts');
     }
 };

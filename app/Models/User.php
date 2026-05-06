@@ -5,13 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Test extends Model
+class User extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
-
-    protected $casts =[
-        'mata_data' =>'json',
-    ];
+    public function post(){
+        return $this->hasMany(Post::class);
+    }
 }
