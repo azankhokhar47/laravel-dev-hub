@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Video extends Model
+class Test extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
-    public $timestamps = false;
-    
-    public function tags(){
-        return $this->morphToMany(Tag::class, 'taggable');
-    }
+
+    protected $casts =[
+        'mata_data' =>'json',
+    ];
 }
