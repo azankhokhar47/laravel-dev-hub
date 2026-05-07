@@ -13,7 +13,7 @@ class UserController extends Controller
     public function index()
     {
         $user = User::with('post')->find(1);
-        return $user;
+        return $user; 
     }
 
     /**
@@ -21,7 +21,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $user = User::find(1)->delete();
     }
 
     /**

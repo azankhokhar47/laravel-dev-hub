@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -11,7 +12,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $post = Post::find(2);
+        return $post;
     }
 
     /**
@@ -19,7 +21,12 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $post_title = "this is another testing";
+        Post::created([
+            'title' => $post_title,
+            'description' => "A post shares ideas, stories, or updates, engaging people, expressing thoughts clearly, and connecting audiences through meaningful, interesting, and creative content online.",
+            'user_id' => 2,
+        ]);
     }
 
     /**
