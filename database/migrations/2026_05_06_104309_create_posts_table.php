@@ -11,10 +11,12 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title', 50);
-            $table->string('slug', 100);
             $table->longText('description');
-            $table->integer('counter')->default(0);
-            $table->unsignedBigInteger('user_id');
+            $table->tinyInteger('status')->default(1);
+            $table->foreignId('user_id')
+                                ->references("id")
+                                ->on("users")
+                                ->cascadeOnDelete();
             $table->timestamps();
         });
     }

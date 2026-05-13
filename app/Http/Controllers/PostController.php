@@ -12,7 +12,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        $post = Post::find(2);
+        $post = Post::withWhereHas("user",function($query){
+           $query->active();
+        })
+        ->get();
         return $post;
     }
 

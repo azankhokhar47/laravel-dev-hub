@@ -17,19 +17,27 @@ class UserSeeder extends Seeder
 
         [
             'name' => 'Azan',
-            'email' => 'azan@gmail.com'
+            'email' => 'azan@gmail.com',
+            'city' => 'Islamabad',
+            'status' => 1
         ],
         [
             'name' => 'Farhan',
-            'email' => 'farhan@gmail.com'
+            'email' => 'farhan@gmail.com',
+            'city' => 'Pindi',
+            'status' => 1
         ],
         [
             'name' => 'Umer',
-            'email' => 'umer@gmail.com'
+            'email' => 'umer@gmail.com',
+            'city' => 'KpK',
+            'status' => 0
         ],
         [
             'name' => 'Fahad',
-            'email' => 'fahad@gmail.com'
+            'email' => 'fahad@gmail.com',
+            'city' => 'Lahore',
+            'status' => 1
         ]
 
         ]);

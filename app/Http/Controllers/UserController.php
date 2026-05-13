@@ -12,7 +12,16 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::with('post')->find(1);
+        // $user = User::with('post')
+        //                   ->active()
+        //                   ->get();
+
+        $user = User::with('post')
+                          ->city("Islamabad")
+                          ->where('status',1)
+                          ->sort()
+                          ->get();
+
         return $user; 
     }
 
@@ -21,7 +30,6 @@ class UserController extends Controller
      */
     public function create()
     {
-        $user = User::find(1)->delete();
     }
 
     /**
