@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Scopes\UserScope;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -13,14 +14,14 @@ class UserController extends Controller
     public function index()
     {
         // $user = User::with('post')
-        //                   ->active()
+        //                   ->sort()
         //                   ->get();
 
-        $user = User::with('post')
-                          ->city("Islamabad")
-                          ->where('status',1)
-                          ->sort()
-                          ->get();
+        // $user = User::city("Islamabad")
+        //                   ->sort()
+        //                   ->get();
+
+        $user = User::withoutGlobalScope(UserScope::class)->get();
 
         return $user; 
     }

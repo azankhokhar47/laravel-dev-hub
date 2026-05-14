@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
         [
             'name' => 'Fahad',
             'email' => 'fahad@gmail.com',
-            'city' => 'Lahore',
+            'city' => 'Islamabad',
             'status' => 1
         ]
 
