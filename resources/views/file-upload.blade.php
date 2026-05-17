@@ -14,7 +14,7 @@
                 <h2 class="text-center mb-2">FIle Upload</h2>
             </div>
         </div>
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form action="{{route('user.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-12">
@@ -35,13 +35,16 @@
                     <div class="alert alert-success">
                         {{session ('status')}}
                     </div>
-                @endsession
                     
                 @endif
             </div>
         </div>
         <div class="row">
-            <div class="col-2"></div>
+            <div class="col-2">
+                @foreach ($collection as $item)
+                    
+                @endforeach
+            </div>
         </div>
     </div>
 </body>

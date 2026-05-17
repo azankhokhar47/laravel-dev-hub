@@ -9,5 +9,7 @@ use Override;
 class User extends Model
 {
     use HasFactory;
- 
+
+    protected $guarded = [];
+    
 }

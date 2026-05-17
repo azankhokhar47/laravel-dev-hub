@@ -13,8 +13,6 @@ class UserScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-        $builder->select("id","name","email")
-                          ->with('post:title,description,user_id')
-                          ->where("status",1);
+       
     }
 }
