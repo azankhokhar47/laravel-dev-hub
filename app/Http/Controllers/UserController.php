@@ -4,74 +4,69 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-       $users = User::get();
-       return view('file-upload',compact('users'));
-    }
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
+        $users = User::get();
+        return view('file-upload', compact('users'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
             'photo' => 'required|mimes:png,jpg,jpeg|max:3000'
         ]);
 
-        $file = $request->file('photo');
-
-        $path = $request->photo->store('image','public'); 
+        $path = $request->file('photo')->store('image', 'public');
 
         User::create([
-            'file-name' => $path,
+            'file_name' => $path,
         ]);
 
-        return redirect()->route('user.index')->with('status','User Image Upload Successfully.');
-
-        }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        return redirect()->route('user.index')
+            ->with('status', 'User Image Upload Successfully.');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('file-upload', compact('user'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        if ($request->hasFile('photo')) {
+
+            if ($user->file_name && Storage::disk('public')->exists($user->file_name)) {
+                Storage::disk('public')->delete($user->file_name);
+            }
+
+            $path = $request->file('photo')->store('image', 'public');
+
+            $user->file_name = $path;
+            $user->save();
+        }
+
+        return redirect()->route('user.index')
+            ->with('status', 'User Image Updated Successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        if ($user->file_name && Storage::disk('public')->exists($user->file_name)) {
+            Storage::disk('public')->delete($user->file_name);
+        }
+
+        $user->delete();
+
+        return redirect()->route('user.index')
+            ->with('status', 'User Deleted Successfully.');
     }
 }

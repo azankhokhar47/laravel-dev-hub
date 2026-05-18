@@ -11,7 +11,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2 class="text-center mb-2">FIle Upload</h2>
+                <h2 class="text-center mb-2">File Upload</h2>
             </div>
         </div>
         <form action="{{route('user.store')}}" method="POST" enctype="multipart/form-data">
@@ -40,11 +40,18 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-2">
-                @foreach ($collection as $item)
-                    
+            
+                @foreach ($users as $user)
+                    <div class="col-2">
+                        <img class="img-fluid img-thumbnail" src="{{ asset('/storage/' . $user->file_name)}}" alt="">
+                    <form action="{{route('user.destroy', $user->id)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm mb-3">Delete</button>
+                    </form>
+                    <a href="{{route('user.edit', $user->id)}}" class="btn btn-warning ">Update</a>
+                    </div>
                 @endforeach
-            </div>
         </div>
     </div>
 </body>
