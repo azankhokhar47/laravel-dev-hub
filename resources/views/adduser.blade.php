@@ -1,35 +1,26 @@
 @extends('layout')
 
-@section(tittle')
-    Add new User
+@section('title')
+Add User
 @endsection
 
 @section('content')
-<form action="{{ route('user.store')}}" method="post">
-    @csrf
-    <div class="mb-3">
-        <label for="username" class="form-label">User name</label>
-        <input type="text" class="form-control" name="username">
-    </div>
 
-    <div class="mb-3">
-        <label for="useremail" class="form-label">User Email</label>
-        <input type="email" class="form-control" name="useremail">
-    </div>
+<form action="{{ route('user.store') }}" method="POST">
+@csrf
 
-    <div class="mb-3">
-        <label for="username" class="form-label">User Age</label>
-        <input type="number" class="form-control" name="userage">
-    </div>
+<input type="text" name="username" class="form-control mb-2" placeholder="Name">
 
-    <div class="mb-3">
-        <label for="usercity" class="form-label">User City</label>
-        <input type="text" class="form-control" name="usercity">
-    </div>
+<input type="email" name="useremail" class="form-control mb-2" placeholder="Email">
 
-    <div class="mb-3">
-        <input type="submit" value="Save" class="btn btn-success">
-    </div>
+<input type="number" name="usersalary" class="form-control mb-2" placeholder="Salary">
+
+<input type="date" name="userdob" class="form-control mb-2" placeholder="Date of Birth">
+
+<input type="password" name="userpass" class="form-control mb-2" placeholder="Password">
+
+<button class="btn btn-success">Save</button>
 
 </form>
+
 @endsection

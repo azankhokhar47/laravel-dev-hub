@@ -1,30 +1,35 @@
 @extends('layout')
 
-@section(tittle')
-    User Details
+@section('title')
+User Details
 @endsection
 
 @section('content')
-<table class="table table-striped table-borered">
+
+<table class="table">
+
 <tr>
-<th width="80px">Name :</th>
-<td>{{$users->name}}</td>
+    <th>Name</th>
+    <td>{{ $user->username }}</td>
 </tr>
 
 <tr>
-<th>Email :</th>
-<td>{{$users->email}}</td>
+    <th>Email</th>
+    <td>{{ $user->email }}</td>
 </tr>
 
 <tr>
-<th>Age :</th>
-<td>{{$users->age}}</td>
+    <th>Salary</th>
+    <td>{{ $user->salary }}</td>
 </tr>
 
 <tr>
-<th>City :</th>
-<td>{{$users->city}}</td>
+    <th>Date of Birth</th>
+    <td>{{ $user->dob }}</td>
 </tr>
+
 </table>
+
 <a href="{{ route('user.index') }}" class="btn btn-danger">Back</a>
+
 @endsection

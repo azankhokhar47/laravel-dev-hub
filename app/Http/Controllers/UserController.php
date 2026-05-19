@@ -8,63 +8,78 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(){
+        $users = User::simplePaginate(10);
+                 return view("home", compact('users'));
+    }
+    public function create()
     {
-        $users = User::get();
-        return view('file-upload', compact('users'));
+        return view("adduser");
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'photo' => 'required|mimes:png,jpg,jpeg|max:3000'
+            'username'=>'required',
+            'useremail'=>'required|email',
+            'usersalary'=>'required|numeric',
+            'userdob'=>'required',
+            'userpass'=>'required',
         ]);
 
-        $path = $request->file('photo')->store('image', 'public');
-
-        User::create([
-            'file_name' => $path,
+        $user = User::create([
+            'username'=> $request->username,
+            'email'=> $request->useremail,
+            'salary'=> $request->usersalary,
+            'dob'=> $request->userdob,
+            'password'=> $request->userpass,
+            
         ]);
 
         return redirect()->route('user.index')
-            ->with('status', 'User Image Upload Successfully.');
+            ->with('status', 'New User Add Successfully.');
     }
 
-    public function edit(string $id)
+    public function show(string $id)
     {
-        $user = User::findOrFail($id);
-        return view('file-upload', compact('user'));
+        $users = User::find($id);
+        return view("viewuser", compact('users'));
+    }
+    
+    
+    public function edit(User $user)
+    {
+        $users = User::find($user->id);
+        return view("updateuser", compact('users'));
     }
 
     public function update(Request $request, string $id)
     {
-        $user = User::findOrFail($id);
+        $request->validate([
+            'username'=>'required',
+            'useremail'=>'required|email',
+            'usersalary'=>'required|numeric',
+            'userdob'=>'required',
+            'userpass'=>'required',
+        ]);
 
-        if ($request->hasFile('photo')) {
-
-            if ($user->file_name && Storage::disk('public')->exists($user->file_name)) {
-                Storage::disk('public')->delete($user->file_name);
-            }
-
-            $path = $request->file('photo')->store('image', 'public');
-
-            $user->file_name = $path;
-            $user->save();
-        }
+        $user = User::where('id',$id)->update([
+            'username'=> $request->username,
+            'email'=> $request->useremail,
+            'salary'=> $request->usersalary,
+            'dob'=> $request->userdob,
+            'password'=> $request->userpass,
+            
+        ]);
 
         return redirect()->route('user.index')
-            ->with('status', 'User Image Updated Successfully.');
+            ->with('status', 'Updated User Successfully.');
     }
 
     public function destroy(string $id)
     {
-        $user = User::findOrFail($id);
-
-        if ($user->file_name && Storage::disk('public')->exists($user->file_name)) {
-            Storage::disk('public')->delete($user->file_name);
-        }
-
-        $user->delete();
+        $users = User::find($id);
+        $users->delete();
 
         return redirect()->route('user.index')
             ->with('status', 'User Deleted Successfully.');

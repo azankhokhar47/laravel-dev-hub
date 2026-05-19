@@ -1,41 +1,27 @@
 @extends('layout')
 
-@section(tittle')
-   Update User data
+@section('title')
+Update User
 @endsection
 
 @section('content')
-<form action="{{ route('user.update',$users->id)}}" method="Post">
-    @csrf
-    @method('PUT')
-    // <pre>
-    //   @php
-    //       print-r($error->all());
-    //   @endphp
-    // </pre>
-    <div class="mb-3">
-        <label for="username" class="form-label">User name</label>
-        <input type="text" value="{{ $users->name }}" class="form-control" name="username">
-    </div>
 
-    <div class="mb-3">
-        <label for="useremail" class="form-label">User Email</label>
-        <input type="email" value="{{ $users->email }}" class="form-control" name="useremail">
-    </div>
+<form action="{{ route('user.update',$user->id) }}" method="POST">
+@csrf
+@method('PUT')
 
-    <div class="mb-3">
-        <label for="username" class="form-label">User Age</label>
-        <input type="number" value="{{ $users->age }}" class="form-control" name="userage">
-    </div>
+<input type="text" name="username" value="{{ $user->username }}" class="form-control mb-2">
 
-    <div class="mb-3">
-        <label for="usercity" class="form-label">User City</label>
-        <input type="text" value="{{ $users->city }}" class="form-control" name="usercity">
-    </div>
+<input type="email" name="useremail" value="{{ $user->email }}" class="form-control mb-2">
 
-    <div class="mb-3">
-        <input type="submit" value="Save" class="btn btn-success">
-    </div>
+<input type="number" name="usersalary" value="{{ $user->salary }}" class="form-control mb-2">
+
+<input type="date" name="userdob" value="{{ $user->dob }}" class="form-control mb-2">
+
+<input type="password" name="userpass" class="form-control mb-2" placeholder="Enter new password">
+
+<button class="btn btn-primary">Update</button>
 
 </form>
+
 @endsection
