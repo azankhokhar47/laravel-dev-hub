@@ -4,12 +4,12 @@ namespace App\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\HtmlString;
 use Illuminate\View\Component;
 
 class alert extends Component
 {
     public $type;
-    public $message;
 
     protected $types= [
       "success",
@@ -19,10 +19,14 @@ class alert extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct( string $type = "info", string $message = "No message")
+    public function __construct( string $type = "info")
     {
         $this->type = $type;
-        $this->message = $message;
+
+    }
+
+    public function link($text, $target = "#"){
+        return new HtmlString('<a href=" ' . $target . ' " class="alert-link">'.$text.'</a>');
     }
 
     /**
