@@ -18,7 +18,7 @@
 
     <x-card/>
 
-    <x-form action="/somepage">
+    <x-form action="/somepage" method="PUT">
         <input type="text" name="name" >
         <button type="submit">Save</button>
     </x-form>

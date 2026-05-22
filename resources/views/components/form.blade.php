@@ -5,6 +5,10 @@
 
 <form action="{{$action}}" method="{{$method}}">
 @csrf
-@method('PUT')
+
+@unless (in_array($method,['GET','POST']))
+    @method($method)
+@endunless
+
     {{ $slot }}
 </form>
